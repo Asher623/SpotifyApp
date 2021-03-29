@@ -43,7 +43,7 @@ app.use(passport.initialize());
 passport.use(strategy);
 
 
-app.post("/api/user/register", (req,res) => {
+app.post("/api/register", (req,res) => {
     userService.registerUser(req.body)
     .then((msg) => {
         res.json({ "message": msg });
@@ -53,7 +53,7 @@ app.post("/api/user/register", (req,res) => {
 
 });
 
-app.post("/app/user/login", (req,res) =>{
+app.post("/app/login", (req,res) =>{
     userService.checkUser(req.body)
         .then((user) => {
             var payload = { 
@@ -67,7 +67,7 @@ app.post("/app/user/login", (req,res) =>{
         });
 });
 
-app.get("/api/user/favourites",  passport.authenticate('jwt', { session: false }), (req,res) =>{
+app.get("/api/favourites",  passport.authenticate('jwt', { session: false }), (req,res) =>{
     userService.getFavourites(req.user._id)
     .then((msg) => {
 
@@ -77,7 +77,7 @@ app.get("/api/user/favourites",  passport.authenticate('jwt', { session: false }
     });
 })
 
-app.put("api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
+app.put("api/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
     userService.addFavourite(req.user._id)
     .then((msg) => {
 
@@ -87,7 +87,7 @@ app.put("api/user/favourites/:id", passport.authenticate('jwt', { session: false
     });
 })
 
-app.delete("api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
+app.delete("api/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
     userService.addFavourite(req.user._id)
     .then((msg) => {
 
