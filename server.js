@@ -77,7 +77,7 @@ app.get("/api/user/favourites",  passport.authenticate('jwt', { session: false }
     });
 })
 
-app.put("api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
+app.put("/api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
     console.log(req.body + "IDddd");
     console.log(req.user._id);
     userService.addFavourite(req.user._id, req.body)
@@ -89,7 +89,7 @@ app.put("api/user/favourites/:id", passport.authenticate('jwt', { session: false
     });
 })
 
-app.delete("api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
+app.delete("/api/user/favourites/:id", passport.authenticate('jwt', { session: false }), (req,res) =>{
     userService.removeFavourite(req.user._id, req.body)
     .then((msg) => {
 
